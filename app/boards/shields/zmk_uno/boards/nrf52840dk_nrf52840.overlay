@@ -17,7 +17,10 @@
         group1 {
             psels = <NRF_PSEL(QDEC_A, 1, 11)>,
                     <NRF_PSEL(QDEC_B, 1, 10)>;
+<<<<<<< HEAD
             bias-pull-up;
+=======
+>>>>>>> 748c3a7c (refactor(boards): Move ZMK Uno to power domains.)
             low-power-enable;
         };
     };
