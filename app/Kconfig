@@ -442,7 +442,10 @@ config ZMK_SLEEP
     bool "Enable deep sleep support"
     depends on HAS_POWEROFF
     select POWEROFF
+<<<<<<< HEAD
     select ZMK_PM_DEVICE_SUSPEND_RESUME
+=======
+>>>>>>> 1252188e (feat(power): Add power domain config)
     select PM_DEVICE
     imply USB
 
@@ -465,7 +468,10 @@ config ZMK_POWER_DOMAINS_DYNAMIC_DEFAULT
     default n
     depends on ZMK_POWER_DOMAINS
     select PM_DEVICE_POWER_DOMAIN_DYNAMIC
+<<<<<<< HEAD
     select DEVICE_DEPS_DYNAMIC
+=======
+>>>>>>> 1252188e (feat(power): Add power domain config)
 
 # Default this to 2, the most common scenario for this for ZMK is RGB + OLED
 config PM_DEVICE_POWER_DOMAIN_DYNAMIC_NUM
@@ -474,6 +480,7 @@ config PM_DEVICE_POWER_DOMAIN_DYNAMIC_NUM
 config ZMK_EXT_POWER
     bool "Enable support to control external power output"
     default y if !ZMK_POWER_DOMAINS
+<<<<<<< HEAD
 
 config ZMK_PM
     bool
@@ -494,6 +501,8 @@ config ZMK_GPIO_KEY_WAKEUP_TRIGGER
     bool "Hardware supported wakeup (GPIO)"
     default y
     depends on DT_HAS_ZMK_GPIO_KEY_WAKEUP_TRIGGER_ENABLED && ZMK_PM_SOFT_OFF
+=======
+>>>>>>> 1252188e (feat(power): Add power domain config)
 
 #Power Management
 endmenu
