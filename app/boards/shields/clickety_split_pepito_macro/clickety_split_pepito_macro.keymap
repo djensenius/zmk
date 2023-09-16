@@ -33,7 +33,7 @@
 / {
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        adjust_win_layer {
+        adjust_layer {
             if-layers = <1 2>;
             then-layer = <3>;
         };
@@ -88,7 +88,7 @@
 &kp CAPS    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN
                         &kp LG(L)   &kp LGUI    &lt 1 RET   &lt 2 SPACE
             >;
-            
+
 //            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
@@ -115,7 +115,7 @@
         };
 
         adjust_layer {
-            label = " Raise";
+            label = " Adjust";
             bindings = <
 &bt BT0     &bt BT1     &bt BT2     &bt BT3     &bt BT4
 BOOTLDR     &sys_reset  &none       &none       &none
