@@ -1,0 +1,10 @@
+file_format: "1"
+id: clickety_split_pepito_macro
+name: Pepito-Macro
+type: shield
+url: https://clicketysplit.ca/pages/pepito
+requires: [seeed_xiao]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
