@@ -9,6 +9,18 @@
 
 
 // Short versions
+#define CP_L1       0
+
+#define PS_L1       1
+#define PS_L2       2
+
+#define LR_L1       3
+#define LR_L2       4
+
+#define SL_L1       5
+#define BT_L1       6
+
+
 #define BT0         BT_SEL 0
 #define BT1         BT_SEL 1
 #define BT2         BT_SEL 2
@@ -20,6 +32,8 @@
 #define VOLUP   C_VOL_UP
 #define VOLDN   C_VOL_DN
 #define VOLMT   C_MUTE
+#define BRIUP   C_BRI_UP
+#define BRIDN   C_BRI_DN
 
 /*
  * Assign the cs-gpios pin to 7.
@@ -31,95 +45,172 @@
 
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        adjust_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
-
     combos {
         compatible = "zmk,combos";
 
-        combo_esc {
+// Apps
+        combo_controls_lightroom {
             timeout-ms = <50>;
-            key-positions = <0 1>;
-            layers = <0>;
-            bindings = <&kp ESC>;
+            key-positions = <12 13>;
+            layers = <CP_L1>;
+            bindings = <&tog LR_L1>;
         };
+
+        combo_controls_lightroom_bk {
+            timeout-ms = <50>;
+            key-positions = <12 13>;
+            layers = <LR_L1>;
+            bindings = <&tog LR_L1>;
+        };
+
+        combo_controls_photoshop {
+            timeout-ms = <50>;
+            key-positions = <11 13>;
+            layers = <CP_L1>;
+            bindings = <&tog PS_L1>;
+        };
+
+        combo_controls_photoshop_bk {
+            timeout-ms = <50>;
+            key-positions = <11 13>;
+            layers = <PS_L1>;
+            bindings = <&tog PS_L1>;
+        };
+
+        combo_controls_streamlabs {
+            timeout-ms = <50>;
+            key-positions = <10 13>;
+            layers = <CP_L1>;
+            bindings = <&tog SL_L1>;
+        };
+
+        combo_controls_streamlabs_bk {
+            timeout-ms = <50>;
+            key-positions = <10 11>;
+            layers = <SL_L1>;
+            bindings = <&tog SL_L1>;
+        };
+
+
+// Lightroom
+        combo_tab_crop {
+            timeout-ms = <50>;
+            key-positions = <0 5>;
+            layers = <LR_L1>;
+            bindings = <&kp R>;
+        };
+
+        combo_tab_healing {
+            timeout-ms = <50>;
+            key-positions = <1 6>;
+            layers = <LR_L1>;
+            bindings = <&kp Q>;
+        };
+
+        combo_tab_masking {
+            timeout-ms = <50>;
+            key-positions = <2 7>;
+            layers = <LR_L1>;
+            bindings = <&kp LS(W)>;
+        };
+
+// Photoshop
+        combo_delete {
+            timeout-ms = <50>;
+            key-positions = <3 4>;
+            layers = <PS_L1>;
+            bindings = <&kp DEL>;
+        };
+
     };
 
-    macros {
-        enDSH_W: en_Dash {
-            label = "enDSH_W";
-            compatible = "zmk,behavior-macro";
+    behaviors {
+
+        tdx_ESC: tap_dance_1 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "OSX_QUIT";
             #binding-cells = <0>;
-            wait-ms = <20>;
-            tap-ms = <20>;
-            bindings
-                = <&macro_press   &kp LALT>
-                , <&macro_tap     &kp KP_N0 &kp KP_N1 &kp KP_N5 &kp KP_N0>
-                , <&macro_release &kp LALT>
-                ;
+            tapping-term-ms = <200>;
+            bindings = <&kp ESC>, <&kp LG(W)>;
         };
 
-        emDSH_W: em_Dash {
-            label = "emDSH_W";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <20>;
-            tap-ms = <20>;
-            bindings
-                = <&macro_press   &kp LALT>
-                , <&macro_tap     &kp KP_N0 &kp KP_N1 &kp KP_N5 &kp KP_N1>
-                , <&macro_release &kp LALT>
-                ;
-        };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            label = " QWERTY";
+        controls_layer {
+            label = " Controls";
             bindings = <
-&kp ESC     &kp HOME    &kp UP      &kp END     &kp PG_UP
-&kp CAPS    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN
-                        &kp LG(L)   &kp LGUI    &lt 1 RET   &lt 2 SPACE
+&tdx_ESC    &kp LC(UP)    &kp UP         &kp PG_DN      &kp PG_UP
+&kp TAB     &kp LEFT      &kp DOWN       &kp RIGHT      &lt BT_L1 RET
+                          &kp BRIDN      &kp BRIUP      &kp VOLDN      &kp VOLUP
             >;
 
 //            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
-        lower_layer {
-            label = " Lower";
+        photoshop_layer {
+            label = " PHOTOSHP";
             bindings = <
-&kp F1      &kp F2      &kp F3      &kp F4      &kp F5
-&kp F6      &kp F7      &kp F8      &kp F9      &kp F10
-                        &kp F11     &kp F12     &trans      &trans
+&tdx_ESC    &kp B         &kp LG(MINUS)  &kp LG(EQUAL)  &kp BSPC
+&mt LSFT S  &kp J         &kp LBKT       &kp RBKT       &lt BT_L1 RET
+                          &kp LG(Z)      &kp LS(LG(Z))  &kp SPACE      &lt PS_L2 F
             >;
 
 //            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
-        raise_layer {
-            label = " Raise";
+        photoshop_combos_layer {
+            label = " Combos";
             bindings = <
-&kp TAB     &enDSH_W    &emDSH_W    &kp VOLMT   &kp VOLUP
-&kp CAPS    &kp LC(X)   &kp LC(C)   &kp LC(V)   &kp VOLDN
-                        &kp N9      &kp N0      &trans      &trans
+&kp LG(E)   &kp LS(LG(L)) &kp LG(U)      &kp LG(N0)     &kp LG(T)
+&kp LG(C)   &kp LG(V)     &kp LG(D)      &kp X          &kp V
+                          &kp LG(S)      &kp LA(LG(S))  &kp LS(LG(X))  &trans
             >;
 
 //            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
-        adjust_layer {
-            label = " Adjust";
+        lightroom_layer {
+            label = " LIGHTRM";
             bindings = <
-&bt BT0     &bt BT1     &bt BT2     &bt BT3     &bt BT4
-BOOTLDR     &sys_reset  &none       &none       &none
-                        &none       &none       &trans      &trans
+&kp LG(C)   &kp LG(V)     &kp MINUS      &kp EQUAL      &kp BSPC
+&kp LG(Z)   &kp LS(LG(Z)) &kp LBKT       &kp RBKT       &lt BT_L1 RET
+                          &kp Z          &kp LEFT       &kp RIGHT      &mo LR_L2
+            >;
+
+//            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        lightroom_numbers_layer {
+            label = " Numbers";
+            bindings = <
+&kp N1      &kp N2        &kp N3         &kp N4         &kp N5
+&kp N6      &kp N7        &kp N8         &kp N9         &kp N0
+                          &kp LG(A)      &kp LG(D)      &kp LS(LG(E))  &trans
+            >;
+
+//            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        streamlabs_layer {
+            label = " Stream";
+            bindings = <
+&kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_N4      &kp KP_N5
+&kp KP_N6   &kp KP_N7     &kp KP_N8      &kp KP_N9      &kp KP_N0
+                          &kp LA(N1)     &kp LA(N2)     &kp LA(N3)     &kp LA(N4)
+            >;
+
+//            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        ble_layer {
+            label = " BLE";
+            bindings = <
+&bt BT0     &bt BT1       &bt BT2        &bt BT3        &bt BT4
+BOOTLDR     &sys_reset    &bt BT_CLR     &none          &none
+                          &none          &none          &trans         &trans
             >;
 
 //            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
