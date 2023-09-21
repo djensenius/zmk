@@ -175,9 +175,9 @@
         lightroom_layer {
             label = " LIGHTRM";
             bindings = <
-&kp LG(C)   &kp LG(V)     &kp MINUS      &kp EQUAL      &kp BSPC
-&kp LG(Z)   &kp LS(LG(Z)) &kp LBKT       &kp RBKT       &lt BT_L1 RET
-                          &kp Z          &kp LEFT       &kp RIGHT      &mo LR_L2
+&kp LG(C)       &kp LG(V)     &kp MINUS      &kp EQUAL      &kp BSPC
+&mt LSFT LG(Z)  &kp LS(LG(Z)) &kp LBKT       &kp RBKT       &lt BT_L1 RET
+                              &kp Z          &kp LEFT       &kp RIGHT      &mo LR_L2
             >;
 
 //            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
