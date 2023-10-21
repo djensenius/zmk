@@ -35,14 +35,6 @@
 #define BRIUP   C_BRI_UP
 #define BRIDN   C_BRI_DN
 
-/*
- * Assign the cs-gpios pin to 7.
- * Uncomment these next few lines if implementing nice!view Displays
- */
-//nice_view_spi: &spi0 {
-//  cs-gpios = <&xiao_d 7 GPIO_ACTIVE_HIGH>;
-//};
-
 
 / {
     combos {
