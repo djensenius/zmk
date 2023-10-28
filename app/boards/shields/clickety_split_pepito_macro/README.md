@@ -5,6 +5,7 @@
 ```
 west build -d build/pepito-macro -p -b seeeduino_xiao_ble -- -DSHIELD=clickety_split_pepito_macro
 west build -d build/pepito-macro -p -b seeeduino_xiao_ble -- -DSHIELD="clickety_split_pepito_macro nice_view"
+west build -d build/pepito-macro -p -b seeeduino_xiao_ble -- -DSHIELD="clickety_split_pepito_macro nice_view" -DZMK_CONFIG="/workspaces/zmk-config/[alias]/pepito_macro/config"
 ```
 
 ## Overview
