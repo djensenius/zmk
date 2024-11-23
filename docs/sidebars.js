@@ -142,6 +142,7 @@ module.exports = {
           collapsed: true,
           items: [
             "development/contributing/clean-room",
+            "development/contributing/pull-requests",
             "development/contributing/documentation",
           ],
         },
