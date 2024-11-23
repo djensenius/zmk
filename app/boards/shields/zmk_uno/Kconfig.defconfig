@@ -6,16 +6,8 @@ if SHIELD_ZMK_UNO_BASE
 config SHIELD_ZMK_UNO_PM
     bool "ZMK Uno Automatic Power Management"
     default y
-<<<<<<< HEAD
-<<<<<<< HEAD
     select ZMK_POWER_DOMAINS
     select ZMK_POWER_DOMAINS_DYNAMIC_DEFAULT
-=======
->>>>>>> 748c3a7c (refactor(boards): Move ZMK Uno to power domains.)
-=======
-    select ZMK_POWER_DOMAINS
-    select ZMK_POWER_DOMAINS_DYNAMIC_DEFAULT
->>>>>>> 88f8bd81 (refactor(shields): Use dynamic display PD for ZMK Uno.)
     select PM_DEVICE
     select PM_DEVICE_POWER_DOMAIN
     select PM_DEVICE_RUNTIME
